@@ -1,6 +1,7 @@
 from neo4j import GraphDatabase
 from tqdm import tqdm
 from sklearn.metrics.pairwise import cosine_similarity
+from dotenv import load_dotenv
 import tensorflow_text as text
 import tensorflow_hub as hub
 import json
@@ -38,10 +39,10 @@ class Neo4j:
 
     def close(self):
         self.driver.close()
-
+load_dotenv()
 dbpass = os.getenv('pass')
 dbuser = os.getenv('whitedevil')
-neo = Neo4j("bolt://4.tcp.ngrok.io:14877",dbuser,dbpass)
+neo = Neo4j("bolt://localhost:7687",dbuser,dbpass)
 def get_sentence_embeding(sentences):
     preprocessed_text=bert_preprocess(sentences)
     return bert_encoder(preprocessed_text)['pooled_output']
