@@ -41,7 +41,7 @@ class Neo4j:
 
 dbpass = os.getenv('pass')
 dbuser = os.getenv('whitedevil')
-neo = Neo4j("tcp://4.tcp.ngrok.io:14877",dbuser,dbpass)
+neo = Neo4j("bolt://4.tcp.ngrok.io:14877",dbuser,dbpass)
 def get_sentence_embeding(sentences):
     preprocessed_text=bert_preprocess(sentences)
     return bert_encoder(preprocessed_text)['pooled_output']
