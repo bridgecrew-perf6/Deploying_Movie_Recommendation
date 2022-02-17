@@ -39,7 +39,9 @@ class Neo4j:
     def close(self):
         self.driver.close()
 
-neo = Neo4j("","","")
+dbpass = os.getenv('pass')
+dbuser = os.getenv('whitedevil')
+neo = Neo4j("bolt://localhost:7687",dbuser,dbpass)
 def get_sentence_embeding(sentences):
     preprocessed_text=bert_preprocess(sentences)
     return bert_encoder(preprocessed_text)['pooled_output']
